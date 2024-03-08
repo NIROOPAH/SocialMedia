@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import AuthRoute from "./Routes/AuthRoute.js";
+import UserRoute from "./Routes/UserRoute.js";
 
 const app=express();
 
@@ -11,7 +12,7 @@ app.use(bodyParser.json({limit:'30mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'30mb',extended:true}))
 dotenv.config()
 
-mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_DB)
   .then(() => {
     app.listen(process.env.PORT, () => console.log(`Listening at PORT ${process.env.PORT}`));
   })
@@ -19,5 +20,7 @@ mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopolo
     console.log(error);
   });
 
-//routes
+
+//routes 
 app.use('/auth',AuthRoute)
+app.use('/user',UserRoute)
