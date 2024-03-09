@@ -28,7 +28,7 @@ const userSchema=mongoose.Schema(
         worksAt:String,
         relationship:String,
         followers:[],
-        followinng:[],
+        following:[],
     },
     {timestamps:true}
 )
